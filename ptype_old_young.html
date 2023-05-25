@@ -1,0 +1,241 @@
+<!-- You must include this JavaScript file -->
+<!-- <script src="https://assets.crowd.aws/crowd-html-elements.js"></script> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<style type="text/css">
+.large-img {
+    height: 200px;
+    width: 200px;
+}
+</style>
+
+<body onload="createAdjOptions()">
+    <div class="container">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Instructions</h4>
+            <p>Welcome! Everyone knows how a human looks like, right :)?
+
+				There are two groups of human face images below. The faces are from different persons.
+
+				Your task is to select the face component and the adjective for the face component that you feel describes the group.
+
+				Your selection should be based on one of the face components that are given as options below.
+
+				You need to add only one adjective word as the descriptor for the one selected face component.
+
+				male/female/young/old/same/different are not adjective words to describe face components!
+
+				Any answer that is not satisfied with our requirements will be rejected and even blocked..
+			</p>
+        </div>
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Example</h4>
+        </div>
+        <hr>
+        <crowd-form answer-format="flatten-objects" id="form1">
+            <div class="row" id="row0">
+
+            <div class="col-sm" id="col0">
+                <p>
+                    Group 1 - Old
+                </p>
+                <div class="images" id="row0">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000084.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000127.jpg" width="135" height="165">
+                </div>
+                <div class="images" id="row1">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000330.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000444.jpg" width="135" height="165"> 
+                </div>
+                <div class="images" id="row2">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000520.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/old/000867.jpg" width="135" height="165">
+                </div>
+            </div>
+            <div class="col-sm" id="col1">
+                <p>
+                    Group 2 - Young
+                </p>
+                <div class="images" id="row0">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/000952.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/000990.jpg" width="135" height="165">
+                </div>
+                <div class="images" id="row1">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/001170.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/001200.jpg" width="135" height="165"> 
+                </div>
+                <div class="images" id="row2">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/001203.jpg" width="135" height="165">
+                    <img src="https://celebapool-crowdsourcing.s3.us-east-2.amazonaws.com/young/001290.jpg" width="135" height="165">
+                </div>
+            </div>
+            
+            </div>
+            <div class="row" id="row1">
+                <p>
+                    Compared to group 1, I feel the faces in group 2 has 
+                    <select name="compo" style="display: inline-block;" id='adjoptions1'></select> 
+                    <select name="compo" style="display: inline-block;">
+                        <option value='0' selected>Select face components</option>
+                        <option value='1'>Forehead</option>
+                        <option value='2'>Eyebrow</option>
+                        <option value='3'>Eye</option>
+                        <option value='4'>Mouth</option>
+                        <option value='5'>Chin</option>
+                        <option value='6'>Cheek</option>
+                        <option value='7'>Nose</option>
+                        <option value='8'>Ear</option>
+                        <option value='9'>Temple</option>
+                        <option value='10'>Nostril</option>
+                        <option value='11'>Tooth</option>
+                        <option value='12'>Lip</option>
+                        <option value='13'>Tongue</option>
+                        <option value='14'>Skin</option>
+                    </select>
+                    <button id = 'other1' onclick="inputFunction('other1')">Other</button>
+                    <!-- <button onclick="inputFunction()">Other</button> -->
+                </p>
+            </div>
+            <div class="row" id="row1">
+                <p>
+                    Compared to group 2, I feel the faces in group 1 has
+                    <select name="compo" style="display: inline-block;" id='adjoptions2'></select> 
+                    <select name="compo" style="display: inline-block;">
+                        <option value='0' selected>Select face components</option>
+                        <option value='1'>Forehead</option>
+                        <option value='2'>Eyebrow</option>
+                        <option value='3'>Eye</option>
+                        <option value='4'>Mouth</option>
+                        <option value='5'>Chin</option>
+                        <option value='6'>Cheek</option>
+                        <option value='7'>Nose</option>
+                        <option value='8'>Ear</option>
+                        <option value='9'>Temple</option>
+                        <option value='10'>Nostril</option>
+                        <option value='11'>Tooth</option>
+                        <option value='12'>Lip</option>
+                        <option value='13'>Tongue</option>
+                        <option value='14'>Skin</option>
+                    </select>
+                    <button id = 'other2' onclick="inputFunction('other2')">Other</button>
+                </p>
+            </div>
+            
+            <hr>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="ver_q">Verification: </span>
+                </div>
+                <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="answer" id="ver_a">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Your comment:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Optional" aria-label="Username" aria-describedby="basic-addon1" name="comment" id="comment">
+            </div>
+        </crowd-form>
+    </div>
+</body>
+<script type="text/javascript">
+// function getRandomInt(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+
+// $(document).ready(function() {
+//     var img1 = "${img1}";
+//     var img2 = "${img2}";
+//     var img3 = "${img3}";
+
+//     img1 = "https://celebapool.s3.us-east-2.amazonaws.com/"+img1.split("/").at(-1)
+//     img2 = "https://celebapool.s3.us-east-2.amazonaws.com/"+img2.split("/").at(-1)
+//     img3 = "https://celebapool.s3.us-east-2.amazonaws.com/"+img3.split("/").at(-1)
+
+//     console.log(img1);
+
+    // var question_answer = ["what is the first letter of apple?-a", "what is the result of 3 plus 6?-9", "what is the result of 12 plus 2?-14"];
+    // var random_idx = getRandomInt(0, 2);
+    // $("#ver_q").append(question_answer[random_idx].split("-")[0]);
+
+//     $("#form1").submit(function(event) {
+//         var flag = true;
+//         var alert_text = "";
+//         $("#form1 select").each(function() {
+//             var input = $(this);
+//             if (input.val().trim() == '0') {
+//                 alert_text = 'Please answer every question.';
+//                 flag = false
+//             }
+//         });
+//         $("#form1 input").each(function() {
+//             var input = $(this);
+//             if (input.val().trim() == '' && input.attr('name') != 'comment') {
+//                 alert_text = 'Please answer every question.';
+//                 flag = false
+//             }
+//             if (input.val().trim().split(" ").length >= 2) {
+//                 alert_text = 'Please only use one adjective word to describe the face component selected in the following part.';
+//                 flag = false
+//             }
+//         });
+//         if ($("#ver_a").val() != question_answer[random_idx].split("-")[1]) {
+//             alert_text = 'The answer to the verification question is not correct.';
+//             flag = false;
+//         }
+//         if (flag == true) {
+//             $("#form1").submit();
+//         } else {
+//             alert(alert_text);
+//             event.preventDefault();
+//         }
+//     });
+// });
+
+function createAdjOptions() {
+    let adjs = ['white', 'full', 'black', 'different', 'fluffy',
+       'dark', 'closed', 'downturned', 'blond', 'hairy',
+       'light', 'short', 'thick', 'dusky', 'smooth', 'uncovered', 'long', 'open',
+       'covered', 'big', 'natural', 'chubby', 'flat', 'red', 'gray',
+       'blonde', 'skinny', 'stubbier', 'wide', 'blue', 'brown',
+       'round', 'low', 'hidden', 'pointy', 'narrow', 'pale', 'plump',
+       'sharp', 'puffy', 'distracted', 'fat', 'wrinkly', 'small', 'tiny',
+       'unhappy', 'clean', 'smiling', 'pointed', 
+       'masculine', 'thin', 'ambiguous', 'large', 'squinty', 'bare', 'wheatish',
+       'bushy', 'rough', 'convex', 'oval', 'dimpled', 'square', 
+       'trim', 'hairless', 'concealed', 'nice', 'bright',
+       'wrinkled', 'stubby', 'normal', 'yellow', 'aged', 'scraggy',
+       'bland', 'tense', 'dull', 'visible', 'slim', 'stubbled',
+       'olive', 'silky', 'bald', 'block', 'focused', 'happy', 'broad', 
+       'angled', 'youthful', 'raised', 'simple', 'triangular', 'shaved', 'adorned',
+       'upward', 'brownish', 'angry', 'bulbous', 'fiery',
+       'concave', 'straight', 'hard', 'rosey', 'undistinguishable', 'tall', 
+       'shallow', 'same', 'similar', 'parted', 'shaped',
+       'pink', 'squinting', 'stubble', 'high', 'tanned', 'sculpted',
+       'unsmiling', 'soft', 'beautiful', 'contoured', 'young', 
+       'wavy', 'lush', 'exposed', 'bronzed', 'elongated',
+       'showing', 'squared', 'striaght', 'relaxed', 'chiseled', 'smooth', 'pursed',
+       'cleft', 'rough', 'trimmed', 'bumpy', 'pinkish', 'medium', 
+       'subdued', 'arched', 'unadorned', 'green']
+
+    var adjoptions = "<option value='0'>Select appropriate adjactives</option>"
+    for (var i = 0; i < adjs.length; i++) {
+        adjoptions += "<option value='"+adjs[i]+"'>"+adjs[i]+"</option>"
+    }
+    document.getElementById('adjoptions1').innerHTML = adjoptions
+    document.getElementById('adjoptions2').innerHTML = adjoptions
+    document.getElementById('adjoptions3').innerHTML = adjoptions
+}
+
+function inputFunction(id) {
+    var button = document.getElementById(id)
+    button.onclick = true;
+    const input = document.createElement("div");
+    input.innerHTML = "<input type='text' name='d1' placeholder='only one adjactive word'>"
+                    + "<input type='text' name='d2' placeholder='only one face component word'>";
+    button.appendChild(input)
+}
+</script>
