@@ -1,7 +1,0 @@
-$Files = Get-Content "C:\Users\akgo1\Desktop\UIUC\UIUC_notes\IS 589\List.csv"
-$Source = "C:\Users\akgo1\Desktop\UIUC\UIUC_notes\IS 589\img_align_celeba_org\img_align_celeba"
-$Destination = "C:\Users\akgo1\Desktop\UIUC\UIUC_notes\IS 589\Crowdsourcing batch"
-
-foreach ($SourceFile in $Files) {
-Copy-Item "$Source\$SourceFile" -Destination $Destination
-}
