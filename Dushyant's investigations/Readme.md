@@ -33,5 +33,7 @@ Cons or Possible challenges.  -
 faces do get recognised in real world. The images in the real world aren't as organized and clear and professionally shot as the compared to the images in the celebrity dataset. 
 2. The celebrity dataset, doesn't have much occlusions. 
 3. The celeb dataset doesn't have many orientations. 
-4. The celeb dataset doesn't have backgrouond detailing, which doesn't allow any candidate to be more professional. 
+4. The celeb dataset doesn't have backgrouond detailing, which doesn't allow any candidate to be more professional.
+
+let's put some screenshot to better understand the structure of the data. 
 
