@@ -1,0 +1,17 @@
+keypoint - 
+
+1. mOdular based d- as long as 
+
+2. Interface design - how to sue labels form askash's csv , for model training / 
+
+3. Compare with some baseline , fairness metrics. TWo demographic groups - 
+
+
+4. Add more classifiers , and also apply these three classifiers. 
+
+5. Sampling - open ended , what is fair inthis sense.? 
+
+Step 1 - filgure out component , paritally done by akash. 
+Step 2 - Predict the compnonets for all the data. 
+Step 3 - Sampling - equal amount of data for categories. 
+Step 4 - Given fair dataset, check the firness of all the algorithms. 
